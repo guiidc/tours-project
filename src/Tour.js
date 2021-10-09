@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import Context from './context/Context';
 
 const Tour = ({ id, image, info, price, name }) => {
+  const { tours, setTours } = useContext(Context);
   const [readMore, setReadMore] = useState(false);
 
-  const handleClick = (index) => {
-
+  const removeTour = (id) => {
+    const newTours = tours.filter(( tour ) => (
+      tour.id !== id
+    ));
+    setTours(newTours)
   }
+
   return (
     <article className="single-tour">
       <img src={ image } alt={ name } />
@@ -20,7 +26,7 @@ const Tour = ({ id, image, info, price, name }) => {
             { readMore ? 'show less' : 'show more'}
           </button>
         </p>
-        <button onClick={ handleClick }  className="delete-btn">
+        <button onClick={ () => removeTour(id) }  className="delete-btn">
           not interested
         </button>
       </footer>

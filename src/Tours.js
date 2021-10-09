@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import Context from './context/Context';
 import Tour from './Tour';
-const Tours = ({ tours }) => {
+
+const Tours = () => {
+  const { tours } = useContext(Context);
+
   return (
     <section>
       <div className="title">
@@ -8,8 +12,8 @@ const Tours = ({ tours }) => {
         <div className="upperline"></div>
       </div>
       <div>
-        { tours.map((tour, index) => (
-          <Tour key={tour.id} {...tour} index={ index }/>
+        { tours.map((tour) => (
+          <Tour key={tour.id} {...tour} />
         ))}
       </div>
     </section>
